@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @restaurant %>
+
+<div>
+  <%# conditional using policy %>
+  <% if policy(@restaurant).edit? %>
+    <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
+  <% end %>
+  <%= link_to "Back to restaurants", restaurants_path %>
+
+  <%# raw conditional checking if current_user is the owner of the restaurant %>
+  <% if @restaurant.user == current_user %>
+    <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+  <% end %>
+</div>
